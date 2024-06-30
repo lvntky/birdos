@@ -12,6 +12,7 @@ As i mentioned, birdOS is an operating system. Just not a regular one. It's a ga
 ## Acknowledgements
 - [OsDev](https://wiki.osdev.org/Expanded_Main_Page)
 - [IBM manuals](www.minuszerodegrees.net/51xx_manuals.htm)
+- [Ralf Brown's Interrupt List](http://www.delorie.com/djgpp/doc/rbinter/)
 - [IBM PS/2 Manuals](https://ardent-tool.com/docs/pdfs.html)
 - [Michael Abrash’s Graphics Programming Black Book](https://www.jagregory.com/abrash-black-book/)
 

@@ -28,10 +28,17 @@
 BITS 16
 ORG 0X7C00
 
+%include "constant.asm"
+
+%macro setpixel x, y
+    mov ax, 0x0C0F
+%endmacro
+
 start:
     ; Set video mode to 320x200 256-color
     mov ax, 0x13
     int 0x10
+
 
 game_loop:
     
