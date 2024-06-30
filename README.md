@@ -9,6 +9,11 @@ I wrote birdOS for having fun, and warming up my Assembly skills.
 ## What?
 As i mentioned, birdOS is an operating system. Just not a regular one. It's a game that lives in bootsector booted by bios. It support keyboard events and very primitive graphical interface.
 
+## Acknowledgements
+- [OsDev](https://wiki.osdev.org/Expanded_Main_Page)
+- [IBM manuals](www.minuszerodegrees.net/51xx_manuals.htm)
+- [IBM PS/2 Manuals](https://ardent-tool.com/docs/pdfs.html)
+- [Michael Abrash’s Graphics Programming Black Book](https://www.jagregory.com/abrash-black-book/)
 
 ## License
 
