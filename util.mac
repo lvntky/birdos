@@ -1,0 +1,13 @@
+BITS 16
+
+%include "constant.asm"
+
+;; Set pixel on any segment with given x and y coordinates
+;; parameters:
+;; segment to set (es i.e) - %1
+;; x coordinate - %2
+;; y coordinate - %3
+;; color to test - %4
+%macro set_pixel 4
+        mov BYTE [%1:SCREEN_WIDTH * %3 + %2], %4
+%endmacro
