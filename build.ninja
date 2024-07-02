@@ -1,0 +1,23 @@
+# Variables
+nasm = nasm
+nasm_flags = -f bin
+qemu = qemu-system-x86_64
+gdb = gdb
+dd = dd
+
+# Rules
+rule nasm
+  command = $nasm $nasm_flags -o $out $in
+  description = [1/2] nasm -f bin -o $out $in
+
+rule run
+  command = $qemu -drive format=raw,file=$in &
+  description = [2/2] $qemu -drive format=raw,file=$in &
+
+# Build targets
+build birdos.bin: nasm birdos.asm
+
+build run: run birdos.bin
+
+# Default target
+default birdos.bin
