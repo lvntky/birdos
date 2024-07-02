@@ -47,33 +47,27 @@ set_background:
         cmp bx, (SCREEN_WIDTH * SCREEN_HEIGHT)
         jb set_background
 
-game_loop:
-        call draw_pipe
-        jmp game_loop
-
 draw_pipe:
-        mov cx, 20        ; Start y-coordinate
-        mov bx, 190       ; End x-coordinate
-        xor dx, dx        ; Initialize x-coordinate to 0
-
-draw_y_axis:
-        mov dx, 20        ; Start x-coordinate for each row
-draw_x_axis:
-        ;set_pixel es, cx, dx, 0x4
-        mov ax, cx
-        imul ax, SCREEN_HEIGHT
-        add ax, dx
-        mov di, ax
-        mov byte [es:di], 0x4
+        mov cx, 0               ; y counter
+        mov dx, 0               ; x counter
+pipe_next_line:
+        mov cx, 0
         inc dx
-        cmp dx, 20
-        jl draw_x_axis    ; Loop until x reaches 190
-
-        inc cx            ; Increment y-coordinate
-        cmp cx, 190        ; This can be adjusted to control height
-        jne draw_y_axis
-
-exit_draw:
+        cmp dx, PIPE_HEIGHT
+        jb pipe_draw_loop
+        je exit_draw_loop
+pipe_draw_loop:
+        mov si, dx
+        imul si, SCREEN_WIDTH
+        add si, cx
+        mov di, si
+        mov BYTE [es:di], PIPE_COLOR
+        inc cx
+        cmp cx, PIPE_WIDTH
+        je pipe_next_line
+        jb pipe_draw_loop
+exit_draw_loop:
         ret
+
 times 510 - ($ - $$) db 0   ; Pad the rest of the boot sector with zeros
 dw 0xAA55                   ; Boot sector signature
