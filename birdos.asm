@@ -48,14 +48,24 @@ set_background:
         jb set_background
 
 draw_pipe:
-        mov cx, 0               ; y counter
-        mov dx, 0               ; x counter
+        mov cx, 100               ; x counter - width
+        mov dx, 0               ; y counter - height
+        mov ax, 120              ; hole counter
+        jmp pipe_draw_loop
 pipe_next_line:
-        mov cx, 0
+        cmp dx, 80
+        je pipe_make_hole
+        mov cx, 100
         inc dx
         cmp dx, PIPE_HEIGHT
         jb pipe_draw_loop
         je exit_draw_loop
+
+pipe_make_hole:
+        inc dx
+        cmp dx, ax
+        je pipe_next_line
+        jb pipe_make_hole
 pipe_draw_loop:
         mov si, dx
         imul si, SCREEN_WIDTH
@@ -63,7 +73,7 @@ pipe_draw_loop:
         mov di, si
         mov BYTE [es:di], PIPE_COLOR
         inc cx
-        cmp cx, PIPE_WIDTH
+        cmp cx, PIPE_WIDTH + 100
         je pipe_next_line
         jb pipe_draw_loop
 exit_draw_loop:

@@ -10,3 +10,10 @@ BITS 16
         PIPE_COLOR equ 0x02
         PIPE_HEIGHT equ 200
         PIPE_WIDTH equ 20
+        PIPE_HOLE_SIZE equ 40
+        PIPE_HOLE_RANGE equ PIPE_HEIGHT
+;; PRNG Constants
+        RANDOM_SEED equ 12345
+        RANDOM_MODULUS equ PIPE_HEIGHT
+        RANDOM_MULTIPLIER equ 1103515245
+        RANDOM_INCREMENT equ 12345
