@@ -7,6 +7,6 @@ BITS 16
         BG_COLOR equ 0x0B
         SCREEN_SIZE equ (SCREEN_HEIGHT * SCREEN_WIDTH)
 
-        PIPE_COLOR equ 0x0C
-        PIPE_HEIGHT equ 180
+        PIPE_COLOR equ 0x02
+        PIPE_HEIGHT equ 200
         PIPE_WIDTH equ 20
