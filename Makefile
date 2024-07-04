@@ -1,6 +1,7 @@
 # Define variables
 NASM = nasm
 NASM_FLAGS = -f bin
+NASM_DEBUG_FLAGS = -g -f elf64
 QEMU = qemu-system-x86_64
 GDB = gdb
 BOOTSECTOR = birdos.bin
@@ -18,13 +19,16 @@ build:
 	@echo -e "[1/2] $(NASM) $(NASM_FLAGS) -o $(BOOTSECTOR) $(ASM_SOURCE)"
 	$(NASM) $(NASM_FLAGS) -o $(BOOTSECTOR) $(ASM_SOURCE)
 
+debug_build:
+	$(NASM) $(NASM_FLAGS) -o $(BOOTSECTOR) $(ASM_SOURCE)
+
 # Run target
 run: build
 	@echo -e "[2/2] $(QEMU) -drive format=raw,file=$(BOOTSECTOR) &"
 	$(QEMU) -drive format=raw,file=$(BOOTSECTOR)
 
 # Debug target
-debug: build
+debug: debug_build
 	@echo -e "Creating temporary image file $(IMG)"
 	dd if=/dev/zero of=$(IMG) bs=512 count=1
 	dd if=$(BOOTSECTOR) of=$(IMG) conv=notrunc
